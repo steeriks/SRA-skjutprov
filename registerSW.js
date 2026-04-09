@@ -1,0 +1,1 @@
+if('serviceWorker' in navigator) {window.addEventListener('load', () => {navigator.serviceWorker.register('/SRA-skjutprov/sw.js', { scope: '/SRA-skjutprov/' })})}
