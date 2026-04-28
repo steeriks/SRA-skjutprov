@@ -6,13 +6,8 @@ export default function AboutView() {
       <div className="p-4 space-y-4 max-w-xl mx-auto">
         {/* Appinfo */}
         <div className="bg-slate-800 rounded-xl p-6 text-center">
-          <div className="w-20 h-20 mx-auto mb-4 rounded-2xl bg-slate-700 flex items-center justify-center">
-            <svg viewBox="0 0 64 64" className="w-12 h-12">
-              <circle cx="32" cy="32" r="28" fill="none" stroke="#94a3b8" strokeWidth="3"/>
-              <circle cx="32" cy="32" r="18" fill="none" stroke="#94a3b8" strokeWidth="2"/>
-              <circle cx="32" cy="32" r="8" fill="none" stroke="#94a3b8" strokeWidth="2"/>
-              <circle cx="32" cy="32" r="3" fill="#ef4444"/>
-            </svg>
+          <div className="mx-auto mb-4">
+            <img src="/SRA-skjutprov/SPSF_logo.svg" alt="SPSF" className="h-24 w-auto" />
           </div>
           <h1 className="text-2xl font-bold text-slate-100">SRA Skjutprov</h1>
           <p className="text-slate-400 mt-1">Version 1.0.0</p>

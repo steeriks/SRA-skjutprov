@@ -36,9 +36,7 @@ export default function Layout({ children, title, backTo, rightAction }: LayoutP
               <h1 className="text-base font-semibold text-slate-100 truncate">{title}</h1>
             ) : (
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded bg-slate-600 flex items-center justify-center">
-                  <span className="text-xs font-bold text-slate-200">S</span>
-                </div>
+                <img src="/SRA-skjutprov/SPSF_logo.svg" alt="SPSF" className="h-8 w-auto" />
                 <span className="text-base font-semibold text-slate-100">SRA Skjutprov</span>
               </div>
             )}
