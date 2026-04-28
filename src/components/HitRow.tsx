@@ -1,4 +1,3 @@
-import React from 'react'
 import HitCounter from './HitCounter'
 
 interface HitRowProps {

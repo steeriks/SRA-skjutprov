@@ -210,43 +210,43 @@ export function formatHF(hf: number): string {
 
 export const STAGE_DESCRIPTIONS = [
   {
-    title: 'Stage 1 - Bilateral & Single-Hand Shooting',
+    title: 'Moment 1 – Bilateral & Enstämmigt skjutande',
     distance: '10m',
-    timeLimit: '5 sec per series',
+    timeLimit: '5 sek per serie',
     description:
-      '2 shots per target per series. Series 1: both hands. Series 2: strong hand only. Series 3: weak hand only.',
-    ammo: 'Pistol: 6 shots/target (12 total) | Rifle: 6 shots/target (12 total)',
+      '2 skott per mål per serie. Serie 1: båda händerna. Serie 2: stark hand. Serie 3: svag hand.',
+    ammo: 'Pistol: 6 skott/mål (12 totalt) | Gevär: 6 skott/mål (12 totalt)',
   },
   {
-    title: 'Stage 2 - Turns',
+    title: 'Moment 2 – Vändningar',
     distance: '10m',
-    timeLimit: '5 sec per series',
+    timeLimit: '5 sek per serie',
     description:
-      'Start back/side to targets. Series 1: 180° turn, 2 shots/target. Series 2: 90° turn left, 2 shots/target. Series 3: 90° turn right, 2 shots/target.',
-    ammo: 'Pistol: 6 shots/target (12 total) | Rifle: 6 shots/target (12 total)',
+      'Start: rygg/sida mot mål. Serie 1: 180°-vändning, 2 skott/mål. Serie 2: 90°-vändning vänster, 2 skott/mål. Serie 3: 90°-vändning höger, 2 skott/mål.',
+    ammo: 'Pistol: 6 skott/mål (12 totalt) | Gevär: 6 skott/mål (12 totalt)',
   },
   {
-    title: 'Stage 3 - Movement & Magazine Change',
+    title: 'Moment 3 – Förflyttning & Magasinsbyte',
     distance: '10m',
-    timeLimit: '15 sec',
+    timeLimit: '15 sek',
     description:
-      'Start: back to targets, hands up. Turn 180°, 2 shots at pos A/B, move forward (mag change), 2 shots, move back (mag change), 2 shots.',
-    ammo: 'Pistol: 4+2 shots/target | Rifle: 4+2 shots/target',
+      'Start: rygg mot mål, händer upp. Vänd 180°, 2 skott vid pos A/B, rör dig framåt (magasinsbyte), 2 skott, rör dig bakåt (magasinsbyte), 2 skott.',
+    ammo: 'Pistol: 4+2 skott/mål | Gevär: 4+2 skott/mål',
   },
   {
-    title: 'Stage 4 - Forward Movement & Magazine Change',
+    title: 'Moment 4 – Framåtrörelse & Magasinsbyte',
     distance: '20m → 15m → 10m',
-    timeLimit: '25 sec',
+    timeLimit: '25 sek',
     description:
-      'Standing at 20m: 2 shots/target. Move to 15m, kneel: 2 shots/target. Move to 10m, prone/kneel: 2 shots/target.',
-    ammo: 'Pistol: 6 shots/target (12 total) | Rifle: 6 shots/target (12 total)',
+      'Stående vid 20m: 2 skott/mål. Förflytta till 15m, knäläge: 2 skott/mål. Förflytta till 10m, liggande/knäläge: 2 skott/mål.',
+    ammo: 'Pistol: 6 skott/mål (12 totalt) | Gevär: 6 skott/mål (12 totalt)',
   },
   {
-    title: 'Stage 5 - Backward Movement',
-    distance: 'Pistol: 10m→15m | Rifle: 20m (A→B→C)',
-    timeLimit: '15 sec',
+    title: 'Moment 5 – Bakåtrörelse',
+    distance: 'Pistol: 10m→15m | Gevär: 20m (A→B→C)',
+    timeLimit: '15 sek',
     description:
-      'PISTOL: Start at 10m, 4 shots/target. Move back to 15m, 4 shots/target.\nRIFLE: At 20m, pos A: 6 shots/target, pos B: 6 shots/target, pos C: 6 shots/target.',
-    ammo: 'Pistol: 4+4 shots/target | Rifle: 6+6 shots/target',
+      'PISTOL: Starta vid 10m, 4 skott/mål. Rör dig bakåt till 15m, 4 skott/mål.\nGEVÄR: Vid 20m, pos A: 6 skott/mål, pos B: 6 skott/mål, pos C: 6 skott/mål.',
+    ammo: 'Pistol: 4+4 skott/mål | Gevär: 6+6 skott/mål',
   },
 ]

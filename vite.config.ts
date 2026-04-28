@@ -10,9 +10,9 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['icon-192.svg', 'icon-512.svg'],
       manifest: {
-        name: 'SRA Shooting Test',
-        short_name: 'SRA Test',
-        description: 'SRA Applied Reserve Military Shooting Test App',
+        name: 'SRA Skjutprov',
+        short_name: 'SRA Prov',
+        description: 'SRA Tillämpad reservmilitär skytte – skjutprovsapp',
         theme_color: '#1e293b',
         background_color: '#0f172a',
         display: 'standalone',

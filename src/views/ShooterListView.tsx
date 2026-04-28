@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import Layout from '../components/Layout'
 import StageStatusDots from '../components/StageStatusDots'
@@ -8,7 +8,6 @@ import {
   calcTotalHitFactor,
   hasPassed,
   formatHF,
-  getDisplayName,
 } from '../lib/sra'
 import { StageStatus } from '../types'
 
@@ -73,18 +72,18 @@ export default function ShooterListView() {
   return (
     <Layout>
       <div className="p-4 space-y-4 max-w-xl mx-auto">
-        {/* Event Info Header */}
+        {/* Provinfo */}
         <div
           className="bg-slate-800 rounded-xl p-4 cursor-pointer"
           onClick={() => setShowEventForm(!showEventForm)}
         >
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide">Event</h2>
+              <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide">Prov</h2>
               <p className="text-slate-100 font-medium mt-0.5">
-                {eventLocation || 'No location set'} &mdash; {eventDate || 'No date set'}
+                {eventLocation || 'Ingen plats angiven'} &mdash; {eventDate || 'Inget datum angett'}
               </p>
-              {judgeName && <p className="text-slate-400 text-sm">Judge: {judgeName}</p>}
+              {judgeName && <p className="text-slate-400 text-sm">Domare: {judgeName}</p>}
             </div>
             <svg
               className={`w-5 h-5 text-slate-400 transition-transform ${showEventForm ? 'rotate-180' : ''}`}
@@ -97,10 +96,10 @@ export default function ShooterListView() {
 
         {showEventForm && (
           <div className="bg-slate-800 rounded-xl p-4 space-y-3">
-            <h3 className="font-semibold text-slate-200">Event Details</h3>
+            <h3 className="font-semibold text-slate-200">Provdetaljer</h3>
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Date</label>
+                <label className="text-xs text-slate-400 block mb-1">Datum</label>
                 <input
                   type="date"
                   value={eventDate}
@@ -109,49 +108,49 @@ export default function ShooterListView() {
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Location</label>
+                <label className="text-xs text-slate-400 block mb-1">Plats</label>
                 <input
                   type="text"
                   value={eventLocation}
                   onChange={(e) => setEventLocation(e.target.value)}
-                  placeholder="Range name..."
+                  placeholder="Skjutbanans namn..."
                   className="w-full bg-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 border border-slate-600 focus:border-blue-500 outline-none"
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Judge Name</label>
+                <label className="text-xs text-slate-400 block mb-1">Domarens namn</label>
                 <input
                   type="text"
                   value={judgeName}
                   onChange={(e) => setJudgeName(e.target.value)}
-                  placeholder="Full name..."
+                  placeholder="Fullständigt namn..."
                   className="w-full bg-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 border border-slate-600 focus:border-blue-500 outline-none"
                 />
               </div>
               <div>
-                <label className="text-xs text-slate-400 block mb-1">Judge ID</label>
+                <label className="text-xs text-slate-400 block mb-1">Domar-ID</label>
                 <input
                   type="text"
                   value={judgeId}
                   onChange={(e) => setJudgeId(e.target.value)}
-                  placeholder="ID number..."
+                  placeholder="ID-nummer..."
                   className="w-full bg-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 border border-slate-600 focus:border-blue-500 outline-none"
                 />
               </div>
               <div className="col-span-2">
-                <label className="text-xs text-slate-400 block mb-1">Judge Phone</label>
+                <label className="text-xs text-slate-400 block mb-1">Domarens telefon</label>
                 <input
                   type="tel"
                   value={judgePhone}
                   onChange={(e) => setJudgePhone(e.target.value)}
-                  placeholder="Phone number..."
+                  placeholder="Telefonnummer..."
                   className="w-full bg-slate-700 rounded-lg px-3 py-2 text-sm text-slate-100 border border-slate-600 focus:border-blue-500 outline-none"
                 />
               </div>
             </div>
 
             <div className="flex items-center gap-3">
-              <label className="text-sm text-slate-300">Shooter order:</label>
+              <label className="text-sm text-slate-300">Skyttarordning:</label>
               <div className="flex gap-2">
                 <button
                   onClick={() => setShooterOrder('rotating')}
@@ -161,7 +160,7 @@ export default function ShooterListView() {
                       : 'bg-slate-700 text-slate-300'
                   }`}
                 >
-                  Rotating
+                  Roterande
                 </button>
                 <button
                   onClick={() => setShooterOrder('fixed')}
@@ -171,26 +170,26 @@ export default function ShooterListView() {
                       : 'bg-slate-700 text-slate-300'
                   }`}
                 >
-                  Fixed
+                  Fast
                 </button>
               </div>
             </div>
 
             <button
               onClick={() => {
-                if (confirm('Reset all event data? This cannot be undone.')) {
+                if (confirm('Återställ all provdata? Detta kan inte ångras.')) {
                   resetEvent()
                   setShowEventForm(false)
                 }
               }}
               className="w-full py-2 rounded-lg bg-red-900/50 text-red-400 border border-red-800 text-sm font-medium"
             >
-              Reset Event
+              Återställ prov
             </button>
           </div>
         )}
 
-        {/* Safety Training */}
+        {/* Säkerhetsgenomgång */}
         <div className="bg-slate-800 rounded-xl p-4">
           <div className="flex items-center gap-3">
             <button
@@ -208,21 +207,21 @@ export default function ShooterListView() {
               )}
             </button>
             <div className="flex-1">
-              <span className="text-sm text-slate-200">Safety training completed</span>
+              <span className="text-sm text-slate-200">Säkerhetsgenomgång genomförd</span>
             </div>
             <Link
               to="/safety"
               className="text-xs text-blue-400 hover:text-blue-300 underline"
             >
-              View rules
+              Visa regler
             </Link>
           </div>
         </div>
 
-        {/* Add Shooter */}
+        {/* Lägg till skytt */}
         <div className="bg-slate-800 rounded-xl p-4">
           <h2 className="text-sm font-semibold text-slate-400 uppercase tracking-wide mb-3">
-            Shooters ({shooters.length})
+            Skyttar ({shooters.length})
           </h2>
           <div className="flex gap-2 mb-1">
             <input
@@ -230,7 +229,7 @@ export default function ShooterListView() {
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleAdd()}
-              placeholder="First Last..."
+              placeholder="Förnamn Efternamn..."
               className="flex-1 bg-slate-700 rounded-lg px-3 py-2.5 text-slate-100 border border-slate-600 focus:border-blue-500 outline-none"
             />
             <button
@@ -238,21 +237,21 @@ export default function ShooterListView() {
               disabled={!newName.trim()}
               className="px-4 py-2.5 bg-blue-600 hover:bg-blue-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg font-semibold transition-colors"
             >
-              Add
+              Lägg till
             </button>
           </div>
         </div>
 
-        {/* Shooter List */}
+        {/* Skyttarlista */}
         {shooters.length > 0 && (
           <div className="space-y-2">
             <div className="flex items-center justify-between px-1">
-              <span className="text-xs text-slate-500 uppercase tracking-wide">Shooter list</span>
+              <span className="text-xs text-slate-500 uppercase tracking-wide">Skyttarlista</span>
               <button
                 onClick={() => setEditMode(!editMode)}
                 className="text-xs text-blue-400 hover:text-blue-300"
               >
-                {editMode ? 'Done' : 'Edit'}
+                {editMode ? 'Klar' : 'Redigera'}
               </button>
             </div>
             {shooters.map((name, index) => {
@@ -271,7 +270,7 @@ export default function ShooterListView() {
                   {editMode && (
                     <button
                       onClick={() => {
-                        if (confirm(`Remove ${name}?`)) removeShooter(name)
+                        if (confirm(`Ta bort ${name}?`)) removeShooter(name)
                       }}
                       className="w-7 h-7 rounded-full bg-red-900/60 text-red-400 flex items-center justify-center flex-shrink-0"
                     >
@@ -288,18 +287,18 @@ export default function ShooterListView() {
                       <span className={`font-medium text-sm ${isDQ ? 'line-through text-slate-500' : 'text-slate-100'}`}>
                         {name}
                       </span>
-                      {isDQ && <span className="text-xs bg-red-900/50 text-red-400 px-1.5 rounded">DQ</span>}
+                      {isDQ && <span className="text-xs bg-red-900/50 text-red-400 px-1.5 rounded">DK</span>}
                     </div>
                     <StageStatusDots statuses={statuses} />
                   </div>
                   <div className="flex items-center gap-2">
                     {hf !== null && (
-                      <div className={`text-right`}>
+                      <div className="text-right">
                         <div className={`text-sm font-bold ${passed ? 'text-green-400' : 'text-red-400'}`}>
                           {formatHF(hf)}
                         </div>
                         <div className={`text-xs ${passed ? 'text-green-500' : 'text-red-500'}`}>
-                          {passed ? 'PASS' : 'FAIL'}
+                          {passed ? 'GK' : 'UK'}
                         </div>
                       </div>
                     )}
@@ -323,17 +322,16 @@ export default function ShooterListView() {
             <svg className="w-12 h-12 mx-auto mb-3 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
             </svg>
-            <p className="text-sm">Add shooters to get started</p>
+            <p className="text-sm">Lägg till skyttar för att börja</p>
           </div>
         )}
 
-        {/* Start Button */}
         {shooters.length > 0 && (
           <button
             onClick={handleStart}
             className="w-full py-4 bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white rounded-xl font-bold text-lg transition-colors shadow-lg"
           >
-            {safetyConfirmed ? 'Start Scoring' : 'Safety Training & Start'}
+            {safetyConfirmed ? 'Starta poängräkning' : 'Säkerhetsgenomgång & Start'}
           </button>
         )}
       </div>

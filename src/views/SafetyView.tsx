@@ -1,4 +1,3 @@
-import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import Layout from '../components/Layout'
 import { useStore } from '../store/useStore'
@@ -6,27 +5,27 @@ import { useStore } from '../store/useStore'
 const SAFETY_RULES = [
   {
     number: 1,
-    title: 'Treat every firearm as if it is loaded',
+    title: 'Behandla varje skjutvapen som om det är laddat',
     description:
-      'Never assume a firearm is unloaded. Always handle every firearm as if it could fire at any moment. This is the foundation of safe gun handling.',
+      'Anta aldrig att ett vapen är oladdat. Hantera alltid varje vapen som om det kan avfyras när som helst. Detta är grunden för säker vapenhantering.',
   },
   {
     number: 2,
-    title: 'Never point the muzzle at anything you are not willing to destroy',
+    title: 'Rikta aldrig mynningen mot något du inte är beredd att förstöra',
     description:
-      'Be conscious of where the muzzle is pointing at all times. Never let it cover anything you are not prepared to shoot — including yourself and other people.',
+      'Var alltid medveten om vart mynningen pekar. Låt den aldrig täcka något du inte är beredd att skjuta — inklusive dig själv och andra.',
   },
   {
     number: 3,
-    title: 'Keep your finger off the trigger until your sights are on the target',
+    title: 'Håll fingret utanför avtryckarvakten tills siktet är på målet',
     description:
-      'Keep your trigger finger straight and outside the trigger guard until you have made the decision to shoot. This single rule prevents the majority of accidental discharges.',
+      'Håll pekfingret rakt och utanför avtryckarvakten tills du har fattat beslut om att skjuta. Denna regel förhindrar de flesta oavsiktliga avlossningar.',
   },
   {
     number: 4,
-    title: 'Know your target and what is beyond it',
+    title: 'Känna till ditt mål och vad som finns bakom det',
     description:
-      'Be absolutely sure of your target before firing. Bullets can travel through targets and strike unintended objects or persons. Be aware of what lies beyond your target.',
+      'Var absolut säker på ditt mål innan du skjuter. Projektiler kan gå igenom mål och träffa oavsiktliga föremål eller personer. Var medveten om vad som finns bakom ditt mål.',
   },
 ]
 
@@ -44,7 +43,7 @@ export default function SafetyView() {
   }
 
   return (
-    <Layout title="Safety Training" backTo="/">
+    <Layout title="Säkerhetsgenomgång" backTo="/">
       <div className="p-4 space-y-4 max-w-xl mx-auto">
         <div className="bg-yellow-900/30 border border-yellow-700/50 rounded-xl p-4">
           <div className="flex items-center gap-3">
@@ -52,9 +51,9 @@ export default function SafetyView() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
             </svg>
             <div>
-              <h2 className="font-bold text-yellow-300">Safety Briefing Required</h2>
+              <h2 className="font-bold text-yellow-300">Säkerhetsgenomgång krävs</h2>
               <p className="text-sm text-yellow-400/80 mt-0.5">
-                All participants must acknowledge the four fundamental firearm safety rules before proceeding.
+                Alla deltagare måste bekräfta de fyra grundläggande vapensäkerhetsreglerna innan provets start.
               </p>
             </div>
           </div>
@@ -91,7 +90,7 @@ export default function SafetyView() {
               )}
             </div>
             <span className="text-slate-200">
-              I have read and understood all four safety rules and confirm the safety briefing has been completed for all participants.
+              Jag har läst och förstått alla fyra säkerhetsregler och bekräftar att säkerhetsgenomgången är genomförd för samtliga deltagare.
             </span>
           </button>
         </div>
@@ -101,7 +100,7 @@ export default function SafetyView() {
           disabled={!safetyConfirmed}
           className="w-full py-4 bg-green-700 hover:bg-green-600 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-xl font-bold text-lg transition-colors"
         >
-          Continue to Scoring
+          Fortsätt till poängräkning
         </button>
       </div>
     </Layout>

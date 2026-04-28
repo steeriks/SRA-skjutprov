@@ -1,4 +1,3 @@
-import React from 'react'
 import { StageStatus } from '../types'
 
 interface StageStatusDotsProps {
@@ -18,7 +17,7 @@ export default function StageStatusDots({ statuses }: StageStatusDotsProps) {
         <div
           key={i}
           className={`w-2.5 h-2.5 rounded-full ${dotColors[status]}`}
-          title={`Stage ${i + 1}: ${status}`}
+          title={`Moment ${i + 1}: ${status}`}
         />
       ))}
     </div>

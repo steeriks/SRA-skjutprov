@@ -35,19 +35,19 @@ export const SHOT_COUNTS: Record<WeaponType, number[][]> = {
 export const TIME_COUNTS = [3, 3, 1, 1, 1]
 
 export const STAGE_NAMES = [
-  'Stage 1 - Bilateral & Single-Hand',
-  'Stage 2 - Turns',
-  'Stage 3 - Movement & Mag Change',
-  'Stage 4 - Forward Movement',
-  'Stage 5 - Backward Movement',
+  'Moment 1 – Bilateral & Enstämmigt',
+  'Moment 2 – Vändningar',
+  'Moment 3 – Förflyttning & Magasinsbyte',
+  'Moment 4 – Framåtrörelse',
+  'Moment 5 – Bakåtrörelse',
 ]
 
 export const STAGE_SHORT_NAMES = [
   'Bilateral',
-  'Turns',
-  'Movement',
-  'Forward',
-  'Backward',
+  'Vändningar',
+  'Förflyttning',
+  'Framåt',
+  'Bakåt',
 ]
 
 export const PASS_THRESHOLD = 1.3

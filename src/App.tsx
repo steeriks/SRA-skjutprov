@@ -1,4 +1,3 @@
-import React from 'react'
 import { Routes, Route } from 'react-router-dom'
 import ShooterListView from './views/ShooterListView'
 import SafetyView from './views/SafetyView'

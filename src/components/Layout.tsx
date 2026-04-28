@@ -1,12 +1,12 @@
-import React from 'react'
+import { ReactNode } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { useStore } from '../store/useStore'
 
 interface LayoutProps {
-  children: React.ReactNode
+  children: ReactNode
   title?: string
   backTo?: string
-  rightAction?: React.ReactNode
+  rightAction?: ReactNode
 }
 
 export default function Layout({ children, title, backTo, rightAction }: LayoutProps) {
@@ -39,7 +39,7 @@ export default function Layout({ children, title, backTo, rightAction }: LayoutP
                 <div className="w-6 h-6 rounded bg-slate-600 flex items-center justify-center">
                   <span className="text-xs font-bold text-slate-200">S</span>
                 </div>
-                <span className="text-base font-semibold text-slate-100">SRA Shooting Test</span>
+                <span className="text-base font-semibold text-slate-100">SRA Skjutprov</span>
               </div>
             )}
           </div>
@@ -78,19 +78,19 @@ export default function Layout({ children, title, backTo, rightAction }: LayoutP
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
               </svg>
-              <span className="text-xs">Home</span>
+              <span className="text-xs">Hem</span>
             </Link>
             <Link to="/rules" className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 min-w-[60px]">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
               </svg>
-              <span className="text-xs">Rules</span>
+              <span className="text-xs">Regler</span>
             </Link>
             <Link to="/about" className="flex flex-col items-center gap-1 text-slate-400 hover:text-slate-200 min-w-[60px]">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
               </svg>
-              <span className="text-xs">About</span>
+              <span className="text-xs">Om</span>
             </Link>
           </div>
         </nav>

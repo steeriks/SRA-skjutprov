@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom'
 import Layout from '../components/Layout'
 import { useStore } from '../store/useStore'
@@ -35,7 +35,6 @@ export default function ResultCardView() {
     judgeId,
   } = useStore()
 
-  // Determine data source: URL param or store
   const encodedData = searchParams.get('data')
   const shooterName = decodeURIComponent(nameParam ?? '')
 
@@ -58,7 +57,7 @@ export default function ResultCardView() {
     )
   }, [encodedData, shooterName])
 
-  const displayName = shareData?.n ?? shooterName ?? 'Unknown'
+  const displayName = shareData?.n ?? shooterName ?? 'Okänd'
 
   useEffect(() => {
     if (!shareData) return
@@ -80,8 +79,8 @@ export default function ResultCardView() {
 
   if (!shareData) {
     return (
-      <Layout title="Result Card" backTo="/">
-        <div className="p-4 text-center text-slate-400">Invalid result data.</div>
+      <Layout title="Resultatkort" backTo="/">
+        <div className="p-4 text-center text-slate-400">Ogiltig resultatdata.</div>
       </Layout>
     )
   }
@@ -90,33 +89,31 @@ export default function ResultCardView() {
   const totalHF = totalHFFromShare(shareData)
   const passed = !isDQ && totalHF >= PASS_THRESHOLD
 
-  const hitTypeLabels = ['A', 'C', 'D', 'M', 'P']
-
   const handleShare = async () => {
     if (navigator.share) {
       try {
-        await navigator.share({ title: `SRA Result: ${displayName}`, url: shareUrl })
+        await navigator.share({ title: `SRA Resultat: ${displayName}`, url: shareUrl })
         return
       } catch {
         // fall through
       }
     }
     await navigator.clipboard.writeText(shareUrl)
-    alert('Link copied to clipboard!')
+    alert('Länk kopierad till urklipp!')
   }
 
   return (
-    <Layout title="Result Card" backTo={nameParam ? `/shooter/${encodeURIComponent(displayName)}` : '/'}>
+    <Layout title="Resultatkort" backTo={nameParam ? `/shooter/${encodeURIComponent(displayName)}` : '/'}>
       <div className="p-4 space-y-4 max-w-xl mx-auto">
-        {/* Header */}
+        {/* Rubrik */}
         <div className={`rounded-xl p-5 text-center ${passed ? 'bg-green-900/30 border border-green-700/50' : isDQ ? 'bg-red-900/30 border border-red-700/50' : 'bg-red-900/20 border border-red-800/50'}`}>
-          <div className="text-sm text-slate-400 mb-1 font-medium">SRA SHOOTING TEST</div>
+          <div className="text-sm text-slate-400 mb-1 font-medium">SRA SKJUTPROV</div>
           <div className="text-2xl font-bold text-slate-100 mb-1">{displayName}</div>
           <div className="text-sm text-slate-400 mb-4">{shareData.dl}</div>
 
           {isDQ ? (
             <div>
-              <div className="text-4xl font-black text-red-400">DQ</div>
+              <div className="text-4xl font-black text-red-400">DK</div>
               <div className="text-sm text-red-400/70 mt-1">{shareData.h}</div>
             </div>
           ) : (
@@ -124,28 +121,27 @@ export default function ResultCardView() {
               <div className={`text-5xl font-black ${passed ? 'text-green-400' : 'text-red-400'}`}>
                 {formatHF(totalHF)}
               </div>
-              <div className="text-sm text-slate-400 mt-1">Hit Factor</div>
+              <div className="text-sm text-slate-400 mt-1">Träfffaktor</div>
               <div className={`text-xl font-bold mt-2 ${passed ? 'text-green-400' : 'text-red-400'}`}>
-                {passed ? 'PASSED' : 'FAILED'}
+                {passed ? 'GODKÄND' : 'UNDERKÄND'}
               </div>
-              <div className="text-xs text-slate-500 mt-1">Threshold: {PASS_THRESHOLD.toFixed(1)}</div>
+              <div className="text-xs text-slate-500 mt-1">Gräns: {PASS_THRESHOLD.toFixed(1)}</div>
             </div>
           )}
         </div>
 
-        {/* Stage breakdown */}
+        {/* Momentresultat */}
         <div className="bg-slate-800 rounded-xl p-4">
-          <h3 className="font-semibold text-slate-300 text-sm uppercase tracking-wide mb-3">Stage Results</h3>
+          <h3 className="font-semibold text-slate-300 text-sm uppercase tracking-wide mb-3">Momentresultat</h3>
 
-          {/* Header row */}
           <div className="grid grid-cols-8 gap-1 text-xs text-slate-500 mb-2 px-1">
-            <div className="col-span-2">Stage</div>
+            <div className="col-span-2">Moment</div>
             <div className="text-center text-green-400">A</div>
             <div className="text-center text-blue-400">C</div>
             <div className="text-center text-yellow-400">D</div>
             <div className="text-center text-red-400">M</div>
-            <div className="text-center">Time</div>
-            <div className="text-center">HF</div>
+            <div className="text-center">Tid</div>
+            <div className="text-center">TF</div>
           </div>
 
           {shareData.r.map((stageHits, si) => {
@@ -178,10 +174,10 @@ export default function ResultCardView() {
             )
           })}
 
-          {/* Total row */}
+          {/* Totalt */}
           <div className="grid grid-cols-8 gap-1 text-sm py-2 border-t-2 border-slate-600 px-1 mt-1">
-            <div className="col-span-2 font-bold text-slate-200 text-xs">TOTAL</div>
-            {hitTypeLabels.slice(0, 4).map((_, hi) => {
+            <div className="col-span-2 font-bold text-slate-200 text-xs">TOTALT</div>
+            {[0, 1, 2, 3].map((hi) => {
               const total = shareData.r.reduce((sum, sr) => sum + (sr[hi] ?? 0), 0)
               return (
                 <div key={hi} className="text-center font-mono text-slate-300 text-xs font-bold">
@@ -198,32 +194,32 @@ export default function ResultCardView() {
           </div>
         </div>
 
-        {/* Judge info */}
+        {/* Domarinformation */}
         <div className="bg-slate-800 rounded-xl p-4">
           <div className="grid grid-cols-2 gap-3 text-sm">
             <div>
-              <div className="text-xs text-slate-500 mb-0.5">Judge</div>
+              <div className="text-xs text-slate-500 mb-0.5">Domare</div>
               <div className="text-slate-200">{shareData.tn || '—'}</div>
             </div>
             <div>
-              <div className="text-xs text-slate-500 mb-0.5">Judge ID</div>
+              <div className="text-xs text-slate-500 mb-0.5">Domar-ID</div>
               <div className="text-slate-200">{shareData.tno || '—'}</div>
             </div>
           </div>
         </div>
 
-        {/* QR Code */}
+        {/* QR-kod */}
         <div className="bg-slate-800 rounded-xl p-4 flex flex-col items-center gap-3">
-          <h3 className="font-semibold text-slate-300 text-sm uppercase tracking-wide self-start">Share Result</h3>
+          <h3 className="font-semibold text-slate-300 text-sm uppercase tracking-wide self-start">Dela resultat</h3>
           <div className="bg-slate-100 p-3 rounded-xl">
             <canvas ref={qrCanvasRef} />
           </div>
-          <p className="text-xs text-slate-500 text-center">Scan to view result on any device</p>
+          <p className="text-xs text-slate-500 text-center">Skanna för att visa resultatet på valfri enhet</p>
           <button
             onClick={handleShare}
             className="w-full py-3 bg-blue-700 hover:bg-blue-600 text-white rounded-xl font-semibold text-sm transition-colors"
           >
-            Share / Copy Link
+            Dela / Kopiera länk
           </button>
         </div>
       </div>
